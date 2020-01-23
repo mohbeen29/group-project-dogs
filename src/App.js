@@ -13,6 +13,19 @@ class App extends Component {
       savedPhotos: []
     };
   }
+  componentDidMount() {
+    fetch("https://dog.ceo/api/breeds/image/random")
+      .then((response) => response.json())
+      .then((savedPhotos) => {
+        console.log(savedPhotos.message);
+        const array = this.state.savedPhotos;
+        array.push(savedPhotos.message);
+        this.setState({
+          savedPhotos: array
+        });
+      });
+  }
+
   render() {
     return (
       <div className="App">
